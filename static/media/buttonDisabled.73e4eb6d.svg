@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg preserveAspectRatio="none" width="138px" height="45px" viewBox="0 0 138 45" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M130.424 0L5.49153 0L0 35L0 42L135 42L135 35L130.424 0Z" id="path_1" />
+  </defs>
+  <g id="approve" transform="translate(1.5 1.5)">
+    <g id="编组-2">
+      <g id="形状结合">
+        <use xlink:href="#path_1" fill="none" stroke="#474747" stroke-width="3" />
+      </g>
+    </g>
+    <g id="编组-2">
+      <path d="M0 0L135 0L135 9L0 9L0 0Z" transform="translate(0 33)" id="矩形备份-8" fill="#C3C1C1" fill-rule="evenodd" stroke="none" />
+      <path d="M5.49153 0L130.424 0L135 33L0 33L5.49153 0Z" id="矩形备份-7" fill="#DFDFDF" fill-rule="evenodd" stroke="none" />
+    </g>
+    <g id="编组备份-5" transform="translate(37 6)" />
+  </g>
+</svg>

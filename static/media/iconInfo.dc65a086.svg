@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M5 10C7.76142 10 10 7.76142 10 5C10 2.23858 7.76142 0 5 0C2.23858 0 0 2.23858 0 5C0 7.76142 2.23858 10 5 10Z" id="path_1" />
+    <clipPath id="clip_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="编组-3">
+    <g id="i" fill="#C2C2C2" transform="translate(1 1)">
+      <path d="M3.58097 8.13636L3.58097 2.68182L4.41903 2.68182L4.41903 8.13636L3.58097 8.13636ZM4.0071 1.77273Q3.76207 1.77273 3.58629 1.60582Q3.41051 1.43892 3.41051 1.20455Q3.41051 0.970171 3.58629 0.803267Q3.76207 0.636365 4.0071 0.636364Q4.25213 0.636364 4.42791 0.803267Q4.60369 0.970171 4.60369 1.20455Q4.60369 1.43892 4.42791 1.60582Q4.25213 1.77273 4.0071 1.77273Z" />
+    </g>
+    <g id="椭圆形">
+      <g clip-path="url(#clip_1)">
+        <use xlink:href="#path_1" fill="none" stroke="#C0C0C0" stroke-width="1" />
+      </g>
+    </g>
+  </g>
+</svg>
