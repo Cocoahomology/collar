@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="29px" height="29px" viewBox="0 0 29 29" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M0 0L12 0L12 18L0 18L0 0Z" transform="translate(0.07692308 0)" id="path_1" />
+    <path d="M14.5 29C22.5081 29 29 22.5081 29 14.5C29 6.49187 22.5081 0 14.5 0C6.49187 0 0 6.49187 0 14.5C0 22.5081 6.49187 29 14.5 29Z" id="path_2" />
+    <clipPath id="clip_1">
+      <use xlink:href="#path_2" />
+    </clipPath>
+    <clipPath id="mask_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="编组-3">
+    <g id="编组" transform="translate(8.923077 7)">
+      <path d="M0 0L12 0L12 18L0 18L0 0Z" transform="translate(0.07692308 0)" id="Clip-2" fill="none" fill-rule="evenodd" stroke="none" />
+      <g clip-path="url(#mask_1)">
+        <path d="M2.78861 0L11.7581 0C11.9498 0 12.0652 0.216609 11.9604 0.379904L6.27856 9.25148C6.17379 9.41511 6.2891 9.63172 6.48118 9.63172L10.3915 9.63172C10.5859 9.63172 10.7005 9.85336 10.5908 10.0167L5.4849 18L7.39213 11.8277C7.41288 11.6794 7.29988 11.5467 7.15294 11.5467L0.241575 11.5467C0.0969427 11.5467 -0.0154025 11.4179 0.00172935 11.2717L2.54877 0.216609C2.56326 0.0928803 2.66638 0 2.78861 0" transform="translate(0.07692308 0)" id="Fill-1" fill="#FEFEFE" fill-rule="evenodd" stroke="none" />
+      </g>
+    </g>
+    <g id="椭圆形">
+      <g clip-path="url(#clip_1)">
+        <use xlink:href="#path_2" fill="none" stroke="#FFFFFF" stroke-width="2" />
+      </g>
+    </g>
+  </g>
+</svg>

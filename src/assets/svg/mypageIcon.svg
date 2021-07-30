@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="29px" height="29px" viewBox="0 0 29 29" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M14.5 29C22.5081 29 29 22.5081 29 14.5C29 6.49187 22.5081 0 14.5 0C6.49187 0 0 6.49187 0 14.5C0 22.5081 6.49187 29 14.5 29Z" id="path_1" />
+    <path d="M0 0L10.798 0L10.798 11.0313L0 11.0313L0 0Z" transform="translate(0.1604 0.559)" id="path_2" />
+    <path d="M0 0L7.5597 0L7.5597 8.409L0 8.409L0 0Z" transform="translate(0 0.5908)" id="path_3" />
+    <path d="M0 0L7.5593 0L7.5593 8.409L0 8.409L0 0Z" transform="translate(0.5597 0.5908)" id="path_4" />
+    <clipPath id="clip_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+    <clipPath id="mask_1">
+      <use xlink:href="#path_2" />
+    </clipPath>
+    <clipPath id="mask_2">
+      <use xlink:href="#path_3" />
+    </clipPath>
+    <clipPath id="mask_3">
+      <use xlink:href="#path_4" />
+    </clipPath>
+  </defs>
+  <g id="编组-10">
+    <g id="椭圆形备份-3">
+      <g clip-path="url(#clip_1)">
+        <use xlink:href="#path_1" fill="none" stroke="#FFFFFF" stroke-width="2" />
+      </g>
+    </g>
+    <g id="编组" transform="translate(7 4)">
+      <g id="编组" transform="translate(2 0.4414)">
+        <path d="M0 0L10.798 0L10.798 11.0313L0 11.0313L0 0Z" transform="translate(0.1604 0.559)" id="Clip-2" fill="none" fill-rule="evenodd" stroke="none" />
+        <g clip-path="url(#mask_1)">
+          <path d="M5.494 11.032L5.305 11.032C2.375 11.032 0 8.657 0 5.728L0 5.304C0 2.375 2.375 0 5.305 0L5.494 0C8.423 0 10.798 2.375 10.798 5.304L10.798 5.728C10.798 8.657 8.423 11.032 5.494 11.032" transform="translate(0.1604 0.5583)" id="Fill-1" fill="#FEFEFE" fill-rule="evenodd" stroke="none" />
+        </g>
+      </g>
+      <g id="编组" transform="translate(0 11.4414)">
+        <path d="M0 0L7.5597 0L7.5597 8.409L0 8.409L0 0Z" transform="translate(0 0.5908)" id="Clip-4" fill="none" fill-rule="evenodd" stroke="none" />
+        <g clip-path="url(#mask_2)">
+          <path d="M7.56 3.959L5.624 8.409L0 2.074L2.423 0L7.56 3.959Z" transform="translate(-0.0003 0.5908)" id="Fill-3" fill="#FEFEFE" fill-rule="evenodd" stroke="none" />
+        </g>
+      </g>
+      <g id="编组" transform="translate(7 11.4414)">
+        <path d="M0 0L7.5593 0L7.5593 8.409L0 8.409L0 0Z" transform="translate(0.5597 0.5908)" id="Clip-6" fill="none" fill-rule="evenodd" stroke="none" />
+        <g clip-path="url(#mask_3)">
+          <path d="M0 3.959L1.936 8.409L7.56 2.074L5.137 0L0 3.959Z" transform="translate(0.5597 0.5908)" id="Fill-5" fill="#FEFEFE" fill-rule="evenodd" stroke="none" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
