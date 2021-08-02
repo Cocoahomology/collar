@@ -203,7 +203,7 @@ export default function Repay(props) {
             info={[
               { Slippage: ' 1.4%' },
               { 'Minimal Recieve': '1.4USDC' },
-              { Rounte: 'USDT -> COLL -> USDC' },
+              { Rounte: 'COLL-> USDT / WANT->USDT' },
               { Fee: 'xxx WANT ' },
             ]}
           />

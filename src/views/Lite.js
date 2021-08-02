@@ -176,7 +176,7 @@ const MyTabsChild = withStyles({
   },
 })((props) => {
   const [expanded, setExpanded] = useState(true)
-  const [round, setRound] = useState(false)
+  const { round, setRound } = props.round
   const classes = makeStyles((theme) => ({
     root: { position: 'relative' },
     button: {
@@ -230,7 +230,7 @@ export default function Lite() {
   const [liteState, setLiteState] = useReducer((s, ns) => ({ ...s, ...ns }), {
     tabs: 0,
     tabsChild: 0,
-    round: 0,
+    round: false,
     poolList: [],
     bond: 0,
     bondList: [],
@@ -280,6 +280,7 @@ export default function Lite() {
               onChange={(_, v) => setLiteState({ tabsChild: v })}
               labels={tabsChildList}
               info={lite.info(tabsChildList[tabsChild])}
+              round={{ round, setRound: (round) => setLiteState({ round }) }}
             />
             <PoolSelector />
             <Content />
