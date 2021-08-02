@@ -18,22 +18,22 @@ export default class registry {
           decimals: 18,
         }
         this.token['0x28003e9C3583BA8e31Ce0042DBb85b8a7a4543E5'] = {
-          name: 'USD X',
-          symbol: 'USDX',
+          name: 'USD T',
+          symbol: 'USDT',
           decimals: 18,
         }
         this.token['0xae12f6016A3A64afC12CE5F23203FA6b9ce0f1Dd'] = {
-          name: 'USD Y',
-          symbol: 'USDY',
+          name: 'USD C',
+          symbol: 'USDC',
           decimals: 18,
         }
         this.token['0xfd17C3c5Ee35E907eB7C9A01C5A168f985b7F026'] = {
-          name: 'CALL USDX -> USDY',
+          name: 'CALL USDT -> USDC',
           symbol: 'CALL',
           decimals: 18,
         }
         this.token['0x8bb96D1D27fCe63ED2791655D1188a885c392Db3'] = {
-          name: 'COLL USDX -> USDY',
+          name: 'COLL USDT -> USDC',
           symbol: 'COLL',
           decimals: 18,
         }

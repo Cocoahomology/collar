@@ -137,7 +137,7 @@ export default function AmountInput({ state: { state, setState, lite }, title, c
                 endAdornment: (
                   <button onClick={click.max} disabled={!click.condition()}>
                     MAX
-                    <span>balance</span>
+                    <span>Balance</span>
                   </button>
                 ),
               }}

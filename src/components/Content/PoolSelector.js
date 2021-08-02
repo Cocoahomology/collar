@@ -94,7 +94,7 @@ export default function PoolSelector() {
             {bondList.length ? (
               bondList.map((val, key) => (
                 <MenuItem value={val} key={key}>
-                  <img alt="" src={iconUsdt} className={classes.icon} />
+                  <img alt="" src={iconUsdt} className={classes.icon} style={{ width: '20px' }} />
                   <span style={{ fontFamily: 'Gillsans' }}>{registry.token[val].symbol}</span>
                 </MenuItem>
               ))
@@ -116,7 +116,7 @@ export default function PoolSelector() {
             {wantList.length ? (
               wantList.map((val, key) => (
                 <MenuItem value={val} key={key}>
-                  <img alt="" src={iconUsdc} className={classes.icon} />
+                  <img alt="" src={iconUsdc} className={classes.icon} style={{ width: '20px' }} />
                   <span style={{ fontFamily: 'Gillsans' }}>{registry.token[val].symbol}</span>
                 </MenuItem>
               ))
