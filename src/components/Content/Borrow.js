@@ -43,7 +43,7 @@ export default function Borrow() {
     state: { LiteContext, registry, signer },
   } = useContext(Context)
   const {
-    liteState: { lite },
+    liteState: { lite, forceUpdate },
     setLiteState,
   } = useContext(LiteContext)
   const [state, setState] = useReducer((s, ns) => ({ ...s, ...ns }), {
@@ -55,7 +55,7 @@ export default function Borrow() {
     },
     I: { bond: '' },
   })
-  const [forceUpdate, setForceUpdate] = useState({})
+  const [update, setUpdate] = useState({})
   const val = (() => {
     const ctx = { item: {}, action: {} }
     switch (true) {
@@ -122,10 +122,10 @@ export default function Borrow() {
         }
       }
       if (changed) {
-        setForceUpdate({})
+        setUpdate({})
       }
     })()
-  }, [state, lite])
+  }, [state, lite, forceUpdate])
   return useMemo(
     () => (
       <div className={classes.root}>
@@ -175,16 +175,16 @@ export default function Borrow() {
             />
           </div>
         </div>
-        <button
+        {/* <button
           onClick={async () => {
             const num = await lite.controller().get_dx(10000000000).catch(console.log)
             console.log(num && num.toBigInt())
           }}
         >
           TEST
-        </button>
+        </button> */}
       </div>
     ),
-    [lite, state, forceUpdate],
+    [lite, state, update],
   )
 }

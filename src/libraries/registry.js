@@ -10,6 +10,7 @@ export default class registry {
       case 'localhost':
       case '192.168.1.165':
       case '192.168.100.2':
+      case 'yzkonchain.github.io':
       case 'test.app.collar.org':
         this.token['0xBEc25Ed2BCEBB414413cb7767D106C6a7e413131'] = {
           name: 'Collar Governance Token',

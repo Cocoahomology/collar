@@ -43,7 +43,7 @@ export default function Repay(props) {
     state: { LiteContext, registry },
   } = useContext(Context)
   const {
-    liteState: { lite },
+    liteState: { lite, forceUpdate },
     setLiteState,
   } = useContext(LiteContext)
   const [state, setState] = useReducer((s, ns) => ({ ...s, ...ns }), {
@@ -57,7 +57,7 @@ export default function Repay(props) {
     I: { want: '', coll: '' },
     old: { want: '', coll: '' },
   })
-  const [forceUpdate, setForceUpdate] = useState({})
+  const [update, setUpdate] = useState({})
   const val = (() => {
     const ctx = { item: {}, action: {} }
     switch (true) {
@@ -145,10 +145,10 @@ export default function Repay(props) {
         }
       }
       if (changed) {
-        setForceUpdate({})
+        setUpdate({})
       }
     })()
-  }, [state, lite])
+  }, [state, lite, forceUpdate])
 
   return useMemo(
     () => (
@@ -228,6 +228,6 @@ export default function Repay(props) {
         </div>
       </div>
     ),
-    [lite, state, forceUpdate],
+    [lite, state, update],
   )
 }

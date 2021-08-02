@@ -148,6 +148,6 @@ export default function AmountInput({ state: { state, setState, lite }, title, c
         </div>
       </div>
     ),
-    [state.I, anchorEl, click, fontSize],
+    [state.I, anchorEl, click],
   )
 }

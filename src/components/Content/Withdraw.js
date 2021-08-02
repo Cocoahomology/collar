@@ -62,7 +62,7 @@ export default function Withdraw(props) {
     state: { LiteContext, registry },
   } = useContext(Context)
   const {
-    liteState: { lite, bondId, wantId, bondList, wantList },
+    liteState: { lite, forceUpdate },
     setLiteState,
   } = useContext(LiteContext)
   const [state, setState] = useReducer((s, ns) => ({ ...s, ...ns }), {
@@ -75,7 +75,7 @@ export default function Withdraw(props) {
     },
     I: { clpt: '' },
   })
-  const [forceUpdate, setForceUpdate] = useState({})
+  const [update, setUpdate] = useState({})
   const val = (() => {
     const ctx = { item: {}, action: {} }
     switch (true) {
@@ -152,10 +152,10 @@ export default function Withdraw(props) {
         }
       }
       if (changed) {
-        setForceUpdate({})
+        setUpdate({})
       }
     })()
-  }, [state, lite])
+  }, [state, lite, forceUpdate])
   return useMemo(
     () => (
       <div className={classes.root}>
@@ -220,6 +220,6 @@ export default function Withdraw(props) {
         </div>
       </div>
     ),
-    [lite, state, forceUpdate],
+    [lite, state, update],
   )
 }

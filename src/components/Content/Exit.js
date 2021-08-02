@@ -42,7 +42,7 @@ export default function Exit(props) {
     state: { LiteContext, registry },
   } = useContext(Context)
   const {
-    liteState: { lite },
+    liteState: { lite, forceUpdate },
     setLiteState,
   } = useContext(LiteContext)
   const [state, setState] = useReducer((s, ns) => ({ ...s, ...ns }), {
@@ -54,7 +54,7 @@ export default function Exit(props) {
     },
     I: { coll: '' },
   })
-  const [forceUpdate, setForceUpdate] = useState({})
+  const [update, setUpdate] = useState({})
   const val = (() => {
     const ctx = { item: {}, action: {} }
     switch (true) {
@@ -91,7 +91,7 @@ export default function Exit(props) {
   })()
   useEffect(() => {
     ;(async () => {
-      const changed = await lite.fetch_state()
+      await lite.fetch_state()
       try {
         const coll = lite.transform('std', 'str', state.I.coll)
         if (coll.eq(state.input.coll) === false) {
@@ -116,11 +116,8 @@ export default function Exit(props) {
           return
         }
       }
-      if (changed) {
-        setForceUpdate({})
-      }
     })()
-  }, [state, lite])
+  }, [state, lite, forceUpdate])
   return useMemo(
     () => (
       <div className={classes.root}>
@@ -171,6 +168,6 @@ export default function Exit(props) {
         </div>
       </div>
     ),
-    [lite, state, forceUpdate],
+    [lite, state, update],
   )
 }

@@ -1,6 +1,7 @@
 {
   "name": "app",
   "version": "0.1.0",
+  "homepage": "https://yzkonchain.github.io/collar",
   "private": true,
   "dependencies": {
     "@ice/store": "^1.4.3",
@@ -13,6 +14,7 @@
     "@walletconnect/web3-provider": "^1.4.1",
     "customize-cra": "^1.0.0",
     "ethers": "^5.1.4",
+    "gh-pages": "^3.2.3",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "notistack": "^1.0.9",
@@ -46,7 +48,9 @@
     "build": "react-app-rewired build",
     "build0": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [

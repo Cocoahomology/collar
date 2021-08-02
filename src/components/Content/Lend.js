@@ -42,7 +42,7 @@ export default function Lend(props) {
     state: { LiteContext, registry },
   } = useContext(Context)
   const {
-    liteState: { lite },
+    liteState: { lite, forceUpdate },
     setLiteState,
   } = useContext(LiteContext)
   const [anchorEl, setAnchorEl] = useState(null)
@@ -55,7 +55,7 @@ export default function Lend(props) {
     },
     I: { want: '' },
   })
-  const [forceUpdate, setForceUpdate] = useState({})
+  const [update, setUpdate] = useState({})
   const val = (() => {
     const ctx = { item: {}, action: {} }
     switch (true) {
@@ -121,11 +121,8 @@ export default function Lend(props) {
           return
         }
       }
-      // if (changed) {
-      //   setForceUpdate({})
-      // }
     })()
-  }, [state, lite])
+  }, [state, lite, forceUpdate])
   return useMemo(
     () => (
       <div className={classes.root}>
@@ -177,6 +174,6 @@ export default function Lend(props) {
         </div>
       </div>
     ),
-    [lite, state, forceUpdate],
+    [lite, state, update],
   )
 }
