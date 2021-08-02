@@ -209,7 +209,7 @@ const withLoss = (val) => {
 export default function MyPage() {
   const classes = useStyles()
   const {
-    state: { registry, signer, web3 },
+    state: { registry, signer },
     setState,
   } = useContext(Context)
   const [pools, setPools] = useState([])
@@ -363,7 +363,7 @@ export default function MyPage() {
       </div>
 
       <div className={classes.detailTable}>
-        <div>BOND/WANT@Expiry</div>
+        <div>USDT/USDC@2021/8/2</div>
         <div>
           <TableContainer component={Paper} style={{ background: 'none', boxShadow: 'none' }}>
             <Table className={classes.table}>
