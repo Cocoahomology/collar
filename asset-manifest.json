@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/collar/static/css/main.b7dcef46.chunk.css",
-    "main.js": "/collar/static/js/main.3b054697.chunk.js",
-    "main.js.map": "/collar/static/js/main.3b054697.chunk.js.map",
+    "main.js": "/collar/static/js/main.0df874f4.chunk.js",
+    "main.js.map": "/collar/static/js/main.0df874f4.chunk.js.map",
     "runtime-main.js": "/collar/static/js/runtime-main.d4b3473a.js",
     "runtime-main.js.map": "/collar/static/js/runtime-main.d4b3473a.js.map",
-    "static/js/2.80fb3bf1.chunk.js": "/collar/static/js/2.80fb3bf1.chunk.js",
-    "static/js/2.80fb3bf1.chunk.js.map": "/collar/static/js/2.80fb3bf1.chunk.js.map",
+    "static/js/2.a5cf7b83.chunk.js": "/collar/static/js/2.a5cf7b83.chunk.js",
+    "static/js/2.a5cf7b83.chunk.js.map": "/collar/static/js/2.a5cf7b83.chunk.js.map",
     "static/js/3.feeae267.chunk.js": "/collar/static/js/3.feeae267.chunk.js",
     "static/js/3.feeae267.chunk.js.map": "/collar/static/js/3.feeae267.chunk.js.map",
     "index.html": "/collar/index.html",
     "static/css/main.b7dcef46.chunk.css.map": "/collar/static/css/main.b7dcef46.chunk.css.map",
-    "static/js/2.80fb3bf1.chunk.js.LICENSE.txt": "/collar/static/js/2.80fb3bf1.chunk.js.LICENSE.txt",
+    "static/js/2.a5cf7b83.chunk.js.LICENSE.txt": "/collar/static/js/2.a5cf7b83.chunk.js.LICENSE.txt",
     "static/media/index.css": "/collar/static/media/helvetica.0796970a.ttf",
     "static/media/USDC.f08e02b1.svg": "/collar/static/media/USDC.f08e02b1.svg",
     "static/media/USDT.6dc09781.svg": "/collar/static/media/USDT.6dc09781.svg",
@@ -37,8 +37,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.d4b3473a.js",
-    "static/js/2.80fb3bf1.chunk.js",
+    "static/js/2.a5cf7b83.chunk.js",
     "static/css/main.b7dcef46.chunk.css",
-    "static/js/main.3b054697.chunk.js"
+    "static/js/main.0df874f4.chunk.js"
   ]
 }
