@@ -34,10 +34,8 @@ export default function Info() {
 
   useEffect(() => {
     ;(async () => {
-      const changed = await lite.fetch_state()
-      if (changed) {
-        setUpdate({})
-      }
+      await lite.fetch_state()
+      setUpdate({})
     })()
   }, [lite, forceUpdate])
 

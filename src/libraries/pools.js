@@ -1,72 +1,41 @@
-this.token['0xBEc25Ed2BCEBB414413cb7767D106C6a7e413131'] = {
-  name: 'Collar Governance Token',
-  symbol: 'COLLAR',
-  decimals: 18,
-}
-this.token['0xbA944D9198b44b2bDdfF005450E894829468EE51'] = {
-  name: 'USD T',
-  symbol: 'USDT',
-  decimals: 18,
-}
-this.token['0x66CC925C4bEc43191294eb1c8f5975F6e18e9264'] = {
-  name: 'USD C',
-  symbol: 'USDC',
-  decimals: 18,
-}
-this.token['0x713D0803f0ee0543871bDaa62A108DE711584f11'] = {
-  name: 'CALL USDT -> USDC',
-  symbol: 'CALL',
-  decimals: 18,
-}
-this.token['0x1993EDA157207b60208e910c738aF1a63F46B0F8'] = {
-  name: 'COLL USDT -> USDC',
-  symbol: 'COLL',
-  decimals: 18,
-}
-this.token['0xC491FC5fDa92bF60fce293e3cF2D511bCc1b74c0'] = {
-  name: 'CALL USDC -> USDT',
-  symbol: 'CALL',
-  decimals: 18,
-}
-this.token['0xEB106C73F056D6E2d72D6BF811e1786756c8E619'] = {
-  name: 'COLL USDC -> USDT',
-  symbol: 'COLL',
-  decimals: 18,
-}
-this.token['0x8134223C8b69c0956fcf7EDA24A78b2fF6d34b27'] = {
-  name: 'Collar Liquidity Proof Token',
-  symbol: 'CLPT',
-  decimals: 18,
-}
-this.token['0x19a3efB70C87F08312e17736638D4DF13d0c9653'] = {
-  name: 'Collar Liquidity Proof Token',
-  symbol: 'CLPT',
-  decimals: 18,
-}
+import { iconUsdt, iconUsdc } from '@/assets/svg/token'
 
-const USDT = { addr: '0xbA944D9198b44b2bDdfF005450E894829468EE51', symbol: 'USDT' }
-const USDC = { addr: '0x66CC925C4bEc43191294eb1c8f5975F6e18e9264', symbol: 'USDC' }
-const collar = { addr: '0xBEc25Ed2BCEBB414413cb7767D106C6a7e413131', symbol: 'COLLAR' }
+const USDT = { addr: '0x08f5F253fb2080660e9a4E3882Ef4458daCd52b0', symbol: 'USDT', decimals: 18, icon: iconUsdt }
+const USDC = { addr: '0x67C9a0830d922C80A96408EEdF606c528836880C', symbol: 'USDC', decimals: 18, icon: iconUsdc }
+const collar = { addr: '0xe405bD3C4876D1Ea0af92BaCF5831c9FCbDD78aE', symbol: 'COLLAR', decimals: 18 }
 
-export default [
+const pools = [
   {
-    addr_pool: '0x8134223C8b69c0956fcf7EDA24A78b2fF6d34b27',
-    addr_bond: USDT,
-    addr_want: USDC,
-    addr_call: '0x713D0803f0ee0543871bDaa62A108DE711584f11',
-    addr_coll: '0x1993EDA157207b60208e910c738aF1a63F46B0F8',
-    addr_collar: collar,
+    pool: '0x506FeA08646b7ED5084c7a9a302FF5a95B9E980c',
+    bond: USDT,
+    want: USDC,
+    call: '0x9D8FEb661AFc92b83c45fC21836C114164beB285',
+    coll: '0x25a722fbd8c4080937CAD2A4DFa2eeeA29539231',
+    collar: collar,
     swap_sqp: 992187500,
     expiry_time: 1633017600,
   },
   {
-    addr_pool: '0x19a3efB70C87F08312e17736638D4DF13d0c9653',
-    addr_bond: USDC,
-    addr_want: USDT,
-    addr_call: '0xC491FC5fDa92bF60fce293e3cF2D511bCc1b74c0',
-    addr_coll: '0xEB106C73F056D6E2d72D6BF811e1786756c8E619',
-    addr_collar: collar,
+    pool: '0x3894e050adae3ef3D10d7e1c79AE8F7A07866a90',
+    bond: USDC,
+    want: USDT,
+    call: '0x404Ced902eE6d630db51969433ea7DD2EE3524B8',
+    coll: '0x61E04744eD53E1Ae61A9325A5Eba31AEA24eca4D',
+    collar: collar,
     swap_sqp: 992187500,
     expiry_time: 1633017600,
   },
 ]
+
+const poolList = {}
+const wantList = []
+const bondList = []
+
+pools.map((val, key) => {
+  poolList[val.pool] = val
+  bondList.push(val.bond)
+  wantList.push(val.want)
+})
+
+export default pools
+export { poolList, wantList, bondList }

@@ -2,7 +2,8 @@ import { useContext, useReducer, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Context } from '@/store'
 import { FormControl, InputLabel, Box, Select, MenuItem } from '@material-ui/core'
-import { iconInfo, iconUsdt, iconUsdc, ArrowForwardIosIcon } from '@/assets/svg'
+import { iconInfo, ArrowForwardIosIcon } from '@/assets/svg'
+import { iconUsdt, iconUsdc } from '@/assets/svg/token'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -44,7 +45,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }))
-
+const iconToken = {
+  USDT: iconUsdt,
+  USDC: iconUsdc,
+}
 export default function PoolSelector() {
   const classes = useStyles()
   const {
@@ -57,17 +61,6 @@ export default function PoolSelector() {
   } = useContext(LiteContext)
 
   useEffect(() => {
-    const bondList = new Set()
-    const poolList = []
-    Object.keys(registry.pool).map((id, key) => {
-      const pool = registry.pool[id]
-      bondList.add(pool.addr_bond)
-      poolList.push({ id, bondToken: pool.addr_bond, wantToken: pool.addr_want })
-    })
-    setLiteState({ bondList: Array.from(bondList), poolList, bond: lite.pool().addr_bond })
-  }, [])
-
-  useEffect(() => {
     const wantList = poolList.filter((val) => val.bondToken == bond).map((val) => val.wantToken)
     setLiteState({ wantList, want: wantList[0] || 0 })
   }, [bond])
@@ -75,7 +68,7 @@ export default function PoolSelector() {
   useEffect(() => {
     const pool = poolList.filter((val) => val.bondToken == bond && val.wantToken == want)[0]
     pool && lite.reset(null, () => pool.id)
-    setLiteState({ forceUpdate: true })
+    setLiteState({ forceUpdate: {} })
   }, [want])
 
   return (
@@ -92,12 +85,15 @@ export default function PoolSelector() {
             IconComponent={ExpandMoreIcon}
           >
             {bondList.length ? (
-              bondList.map((val, key) => (
-                <MenuItem value={val} key={key}>
-                  <img alt="" src={iconUsdt} className={classes.icon} style={{ width: '20px' }} />
-                  <span style={{ fontFamily: 'Gillsans' }}>{registry.token[val].symbol}</span>
-                </MenuItem>
-              ))
+              bondList.map((val, key) => {
+                const symbol = registry.token[val].symbol
+                return (
+                  <MenuItem value={val} key={key}>
+                    <img alt="" src={iconToken[symbol]} className={classes.icon} style={{ width: '20px' }} />
+                    <span style={{ fontFamily: 'Gillsans' }}>{symbol}</span>
+                  </MenuItem>
+                )
+              })
             ) : (
               <MenuItem value={0}></MenuItem>
             )}
@@ -114,12 +110,15 @@ export default function PoolSelector() {
             IconComponent={ExpandMoreIcon}
           >
             {wantList.length ? (
-              wantList.map((val, key) => (
-                <MenuItem value={val} key={key}>
-                  <img alt="" src={iconUsdc} className={classes.icon} style={{ width: '20px' }} />
-                  <span style={{ fontFamily: 'Gillsans' }}>{registry.token[val].symbol}</span>
-                </MenuItem>
-              ))
+              wantList.map((val, key) => {
+                const symbol = registry.token[val].symbol
+                return (
+                  <MenuItem value={val} key={key}>
+                    <img alt="" src={iconToken[symbol]} className={classes.icon} style={{ width: '20px' }} />
+                    <span style={{ fontFamily: 'Gillsans' }}>{symbol}</span>
+                  </MenuItem>
+                )
+              })
             ) : (
               <MenuItem value={0}></MenuItem>
             )}

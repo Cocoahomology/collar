@@ -1,5 +1,3 @@
-import iconUsdt from './USDT.svg'
-import iconUsdc from './USDC.svg'
 import iconInfo from './iconInfo.svg'
 import buttonAble from './buttonAble.svg'
 import buttonDisabled from './buttonDisabled.svg'
@@ -17,8 +15,6 @@ import TotalValueIcon from './totalValue.svg'
 import GlobalIcon from './global.svg'
 
 export {
-  iconUsdt,
-  iconUsdc,
   iconInfo,
   buttonAble,
   buttonDisabled,

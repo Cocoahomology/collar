@@ -180,12 +180,25 @@ export default function Withdraw(props) {
           </div>
         </div>
         <ApyFloatMessage
-          APY={1.4}
+          APY={`todo`}
           info={[
-            { 'Exchange rate': '1CLPT = 1 WANT + m COLL' },
-            { 'Pool State': '1 COLL' },
-            { 'Pool Shares': ' 0.113%' },
-            { Fee: '2 COLL' },
+            {
+              'Exchange rate': `1CLPT = ${parseFloat(ethers.utils.formatEther(state.output.want)).toFixed(
+                3,
+              )} WANT + ${0} COLL`,
+            },
+            {
+              'Pool Shares': `${(
+                (ethers.utils.formatEther(lite.state.balance.clpt) / ethers.utils.formatEther(lite.state.swap.sk)) *
+                100
+              ).toPrecision(3)} %`,
+            },
+            {
+              'Pool State': `1 WANT = ${(
+                ethers.utils.formatEther(lite.state.swap.sx) / ethers.utils.formatEther(lite.state.swap.sy)
+              ).toPrecision(3)} COLL`,
+            },
+            { Fee: `${0} COLL` },
           ]}
         />
         <div className={classes.button}>
@@ -209,11 +222,8 @@ export default function Withdraw(props) {
             <MyButton
               name="Withdraw & Claim"
               onClick={async () => {
-                enqueueSnackbar({
-                  type: 'failed',
-                  title: 'Test',
-                  message: 'Not support yet!',
-                })
+                await lite.burn_and_claim(state.input.clpt)
+                setLiteState({ forceUpdate: {} })
               }}
             />
           </div>

@@ -1,5 +1,5 @@
 import { ethers } from 'ethers'
-
+import collar from '@/config/abi/collar'
 export default class registry {
   constructor(registry, pool, signer, txcb, enqueueSnackbar) {
     this.f = { registry: registry, pool: pool, signer: signer }
@@ -56,6 +56,7 @@ export default class registry {
       this.state.swap.sx,
       this.state.swap.sy,
       this.state.swap.sk,
+      this.state.swap.fee,
     ] = await Promise.all([
       bond.balanceOf(me),
       want.balanceOf(me),
@@ -69,6 +70,7 @@ export default class registry {
       this.controller().sx(),
       this.controller().sy(),
       this.controller().sk(),
+      this.controller().swap_fee(),
     ])
     if (JSON.stringify(this.state) === snapshot) {
       return false
@@ -76,31 +78,10 @@ export default class registry {
     return true
   }
 
-  controller() {
-    const pool = this.f.pool()
+  controller(address) {
+    const pool = address || this.f.pool()
     const signer = this.f.signer()
-    const abi = [
-      'function sx() external view returns (uint256)',
-      'function sy() external view returns (uint256)',
-      'function sk() external view returns (uint256)',
-      'function swap_sqp() external view returns (uint256)',
-      'function calc_k(uint256,uint256) external view returns (uint256)',
-      'function get_dx(uint256) external view returns (uint256)',
-      'function get_dy(uint256) external view returns (uint256)',
-      'function get_dk(uint256, uint256) external view returns (uint256)',
-      'function earned(address) external view returns (uint256)',
-      'function get_dxdy(uint256) external view returns (uint256, uint256)',
-      'function borrow_want(uint256, uint256) external',
-      'function burn_call(uint256) external',
-      'function burn_dual(uint256) external',
-      'function repay_both(uint256, uint256) external',
-      'function mint(uint256, uint256, uint256) external',
-      'function withdraw_both(uint256) external',
-      'function swap_coll_to_min_want(uint256, uint256) external',
-      'function swap_want_to_min_coll(uint256, uint256) external',
-      'function claim_reward() external',
-    ]
-    return new ethers.Contract(pool, abi, signer)
+    return new ethers.Contract(pool, collar, signer)
   }
 
   transform(to, from, value) {
@@ -341,6 +322,7 @@ export default class registry {
             this.notify('cancel')
             break
           default:
+            this.notify('error')
             console.log(code)
             break
         }
@@ -423,6 +405,22 @@ export default class registry {
         }
       })
   }
+  async burn_and_claim(clpt) {
+    await this.controller()
+      .burn_and_claim(clpt)
+      .then((resp) => resp.wait())
+      .then(({ status }) => this.notify('withdraw', status))
+      .catch(({ code }) => {
+        switch (code) {
+          case 4001:
+            this.notify('cancel')
+            break
+          default:
+            console.log(code)
+            break
+        }
+      })
+  }
   async lend(want, coll) {
     await this.controller()
       .swap_want_to_min_coll(this.with_loss(coll), this.transform('std', 'want', want))
@@ -444,6 +442,22 @@ export default class registry {
       .swap_coll_to_min_want(coll, this.with_loss(this.transform('std', 'want', want)))
       .then((resp) => resp.wait())
       .then(({ status }) => this.notify('redeem', status))
+      .catch(({ code }) => {
+        switch (code) {
+          case 4001:
+            this.notify('cancel')
+            break
+          default:
+            console.log(code)
+            break
+        }
+      })
+  }
+  async mint(n) {
+    await this.controller()
+      .mint_dual(n)
+      .then((resp) => resp.wait())
+      .then(console.log)
       .catch(({ code }) => {
         switch (code) {
           case 4001:
@@ -603,11 +617,17 @@ export default class registry {
           default:
             return failed
         }
-      default:
+      case 'cancel':
         return {
           type: 'failed',
           title: 'Fail.',
           message: 'User denied transaction signature.',
+        }
+      default:
+        return {
+          type: 'failed',
+          title: 'Fail.',
+          message: 'The execution failed due to an exception.',
         }
     }
   }

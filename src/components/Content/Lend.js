@@ -42,7 +42,7 @@ export default function Lend(props) {
     state: { LiteContext, registry },
   } = useContext(Context)
   const {
-    liteState: { lite, forceUpdate },
+    liteState: { lite, forceUpdate, want },
     setLiteState,
   } = useContext(LiteContext)
   const [anchorEl, setAnchorEl] = useState(null)
@@ -121,6 +121,7 @@ export default function Lend(props) {
           return
         }
       }
+      setUpdate({})
     })()
   }, [state, lite, forceUpdate])
   return useMemo(
@@ -146,12 +147,76 @@ export default function Lend(props) {
           </div>
         </div>
         <ApyFloatMessage
-          APY={1.4}
+          APY={
+            lite.state.swap.sk.eq(0)
+              ? 'NaN'
+              : (
+                  ((parseFloat(
+                    ethers.utils.formatEther(
+                      lite.state.swap.sx
+                        .add(lite.state.swap.sk)
+                        .mul(ethers.utils.parseEther('1'))
+                        .div(
+                          lite.state.swap.sy.add(
+                            lite.state.swap.sk.mul(lite.pool().swap_sqp).div(ethers.BigNumber.from(1e9)),
+                          ),
+                        )
+                        .sub(ethers.utils.parseEther('1')),
+                    ),
+                  ) *
+                    31556926000) /
+                    (lite.expiry_time() - new Date())) *
+                  100
+                ).toPrecision(3)
+          }
           info={[
-            { Slippage: ' 1.4%' },
-            { 'Minimal Recieve': '1.4USDC' },
-            { Rounte: 'USDT -> COLL' },
-            { Fee: 'xxx WANT ' },
+            {
+              Slipage: lite.state.swap.sk.eq(0)
+                ? 'NaN'
+                : `${(
+                    (((parseFloat(
+                      ethers.utils.formatEther(
+                        lite.state.swap.sx
+                          .add(lite.state.swap.sk)
+                          .mul(ethers.utils.parseEther('1'))
+                          .div(
+                            lite.state.swap.sy
+                              .add(state.input.want)
+                              .add(lite.state.swap.sk.mul(lite.pool().swap_sqp).div(ethers.BigNumber.from(1e9))),
+                          )
+                          .sub(ethers.utils.parseEther('1')),
+                      ),
+                    ) -
+                      parseFloat(
+                        ethers.utils.formatEther(
+                          lite.state.swap.sx
+                            .add(lite.state.swap.sk)
+                            .mul(ethers.utils.parseEther('1'))
+                            .div(
+                              lite.state.swap.sy.add(
+                                lite.state.swap.sk.mul(lite.pool().swap_sqp).div(ethers.BigNumber.from(1e9)),
+                              ),
+                            )
+                            .sub(ethers.utils.parseEther('1')),
+                        ),
+                      )) *
+                      31556926000) /
+                      (lite.expiry_time() - new Date())) *
+                    100
+                  ).toPrecision(3)} %`,
+            },
+            { 'Minimal Recieve': `${(ethers.utils.formatEther(state.output.coll) * 0.995).toFixed(3)} COLL` },
+            { Rounte: `${registry.token[want].symbol} -> COLL` },
+            {
+              Fee: `${
+                lite.state.swap.sk.eq(0)
+                  ? '0'
+                  : (
+                      ethers.utils.formatEther(state.output.coll) *
+                      (1 - ethers.utils.formatEther(lite.state.swap.fee))
+                    ).toFixed(4)
+              } COLL`,
+            },
           ]}
         />
         <div className={classes.button}>

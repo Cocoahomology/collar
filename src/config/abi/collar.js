@@ -1,4 +1,5 @@
 const collar = [
+  'function balanceOf(address) external view returns (uint256)',
   'function sx() external view returns (uint256)',
   'function sy() external view returns (uint256)',
   'function sk() external view returns (uint256)',
@@ -18,6 +19,9 @@ const collar = [
   'function swap_coll_to_min_want(uint256, uint256) external',
   'function swap_want_to_min_coll(uint256, uint256) external',
   'function claim_reward() external',
+  'function swap_fee() public pure returns (uint256)',
+  'function burn_and_claim(uint256) public',
+  'function mint_dual(uint256) public',
 ]
 
 export default collar

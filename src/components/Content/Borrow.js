@@ -149,12 +149,77 @@ export default function Borrow() {
           </div>
         </div>
         <ApyFloatMessage
-          APY={1.4}
+          APY={
+            lite.state.swap.sk.eq(0)
+              ? 'NaN'
+              : (
+                  ((parseFloat(
+                    ethers.utils.formatEther(
+                      lite.state.swap.sx
+                        .add(lite.state.swap.sk)
+                        .mul(ethers.utils.parseEther('1'))
+                        .div(
+                          lite.state.swap.sy.add(
+                            lite.state.swap.sk.mul(lite.pool().swap_sqp).div(ethers.BigNumber.from(1e9)),
+                          ),
+                        )
+                        .sub(ethers.utils.parseEther('1')),
+                    ),
+                  ) *
+                    31556926000) /
+                    (lite.expiry_time() - new Date())) *
+                  100
+                ).toPrecision(3)
+          }
           info={[
-            { Slippage: ' 1.4%' },
-            { 'Minimal Recieve': '1.4USDC' },
+            {
+              Slippage: lite.state.swap.sk.eq(0)
+                ? 'NaN'
+                : `${(
+                    (((parseFloat(
+                      ethers.utils.formatEther(
+                        lite.state.swap.sx
+                          .add(state.input.bond)
+                          .add(lite.state.swap.sk)
+                          .mul(ethers.utils.parseEther('1'))
+                          .div(
+                            lite.state.swap.sy.add(
+                              lite.state.swap.sk.mul(lite.pool().swap_sqp).div(ethers.BigNumber.from(1e9)),
+                            ),
+                          )
+                          .sub(ethers.utils.parseEther('1')),
+                      ),
+                    ) -
+                      parseFloat(
+                        ethers.utils.formatEther(
+                          lite.state.swap.sx
+                            .add(lite.state.swap.sk)
+                            .mul(ethers.utils.parseEther('1'))
+                            .div(
+                              lite.state.swap.sy.add(
+                                lite.state.swap.sk.mul(lite.pool().swap_sqp).div(ethers.BigNumber.from(1e9)),
+                              ),
+                            )
+                            .sub(ethers.utils.parseEther('1')),
+                        ),
+                      )) *
+                      31556926000) /
+                      (lite.expiry_time() - new Date())) *
+                    100
+                  ).toPrecision(3)} %`,
+            },
+            { 'Minimal Recieve': `${(ethers.utils.formatEther(state.output.want) * 0.995).toFixed(3)} USDC` },
             { Rounte: 'USDT -> COLL -> USDC' },
-            { Fee: 'xxx WANT ' },
+            {
+              Fee: `${
+                lite.state.swap.sk.eq(0)
+                  ? '0'
+                  : (
+                      ethers.utils.formatEther(state.output.want) *
+                      (1 - ethers.utils.formatEther(lite.state.swap.fee))
+                    ).toFixed(4)
+              } WANT`,
+            },
           ]}
         />
         <div className={classes.button}>
@@ -175,14 +240,6 @@ export default function Borrow() {
             />
           </div>
         </div>
-        {/* <button
-          onClick={async () => {
-            const num = await lite.controller().get_dx(10000000000).catch(console.log)
-            console.log(num && num.toBigInt())
-          }}
-        >
-          TEST
-        </button> */}
       </div>
     ),
     [lite, state, update],

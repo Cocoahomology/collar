@@ -42,12 +42,12 @@ const useStyles = makeStyles((theme) => ({
       },
       //PC
       '@media screen and (min-width:960px)': {
-        width: '920px',
+        width: '900px',
         '&:nth-child(2)': {
-          width: '900px',
+          width: '880px',
         },
         '&:nth-child(3)': {
-          width: '880px',
+          width: '860px',
         },
       },
     },
@@ -80,15 +80,19 @@ const useStyles = makeStyles((theme) => ({
 }))
 const MyAccordion = withStyles({
   root: {
+    backgroundColor: '#EDF2FF',
+    color: '#4975FF',
     boxShadow: 'none',
     margin: '0 !important',
+    borderRadius: '10px',
     '&>div:first-child': {
       minHeight: 0,
       height: 0,
     },
     '&>div:last-child div': {
-      padding: 0,
+      padding: '3px',
       fontSize: '15px',
+      fontFamily: 'Helvetica',
     },
     '&:before': {
       background: 'none',
@@ -245,6 +249,16 @@ export default function Lite() {
     ),
     forceUpdate: {},
   })
+  useEffect(() => {
+    const bondList = new Set()
+    const poolList = []
+    Object.keys(registry.pool).map((id, key) => {
+      const pool = registry.pool[id]
+      bondList.add(pool.addr_bond)
+      poolList.push({ id, bondToken: pool.addr_bond, wantToken: pool.addr_want })
+    })
+    setLiteState({ bondList: Array.from(bondList), poolList, bond: lite.pool().addr_bond })
+  }, [])
   useEffect(() => {
     lite.reset(null, null, () => signer)
     setLiteState({ forceUpdate: {} })

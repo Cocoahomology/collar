@@ -1,6 +1,6 @@
 import { useCallback, useContext, useReducer, useMemo, useEffect, useState } from 'react'
 import { Context } from '@/store'
-import { ethers } from 'ethers'
+import { BigNumber, ethers } from 'ethers'
 import { useSnackbar } from 'notistack'
 import { MyButton, AmountInput, AmountShow, ApyFloatMessage } from '@/components/modules'
 import { FormControl, MenuItem, Select } from '@material-ui/core'
@@ -194,8 +194,55 @@ export default function Repay(props) {
           </div>
         </div>
         <ApyFloatMessage
-          APY={1.4}
-          info={[{ 'Pool Shares': ' 0.113%' }, { 'Pool State': '1 COLL' }, { Slipage: '2 %' }]}
+          APY={`todo`}
+          info={[
+            {
+              'Pool Shares': `${(
+                (ethers.utils.formatEther(lite.state.balance.clpt) / ethers.utils.formatEther(lite.state.swap.sk)) *
+                100
+              ).toPrecision(3)} %`,
+            },
+            {
+              'Pool State': `1 WANT = ${(
+                ethers.utils.formatEther(lite.state.swap.sx) / ethers.utils.formatEther(lite.state.swap.sy)
+              ).toPrecision(3)} COLL`,
+            },
+            {
+              Slipage: lite.state.swap.sk.eq(0)
+                ? 'NaN'
+                : `${(
+                    (((parseFloat(
+                      ethers.utils.formatEther(
+                        lite.state.swap.sx
+                          .add(lite.state.swap.sk)
+                          .mul(ethers.utils.parseEther('1'))
+                          .div(
+                            lite.state.swap.sy.add(
+                              lite.state.swap.sk.mul(lite.pool().swap_sqp).div(ethers.BigNumber.from(1e9)),
+                            ),
+                          )
+                          .sub(ethers.utils.parseEther('1')),
+                      ),
+                    ) -
+                      parseFloat(
+                        ethers.utils.formatEther(
+                          lite.state.swap.sx
+                            .add(lite.state.swap.sk)
+                            .mul(ethers.utils.parseEther('1'))
+                            .div(
+                              lite.state.swap.sy.add(
+                                lite.state.swap.sk.mul(lite.pool().swap_sqp).div(ethers.BigNumber.from(1e9)),
+                              ),
+                            )
+                            .sub(ethers.utils.parseEther('1')),
+                        ),
+                      )) *
+                      31556926000) /
+                      (lite.expiry_time() - new Date())) *
+                    100
+                  ).toPrecision(3)} %`,
+            },
+          ]}
         />
         <div className={classes.button}>
           <div>

@@ -9,6 +9,7 @@ import Pro from '@/views/Pro'
 import Term from '@/views/Term'
 import Home from '@/views/Home'
 import MyPage from '@/views/MyPage'
+import Faucet from '@/views/Faucet'
 
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
@@ -100,6 +101,7 @@ export default function Navigator() {
             <MyListItem onClick={() => changePage('pro')} item="Pro" icon={ProIcon} cur={curpage} />
             <MyListItem onClick={() => changePage('term')} item="Term" icon={TermIcon} cur={curpage} />
             <MyListItem onClick={() => changePage('mypage')} item="MyPage" icon={MypageIcon} cur={curpage} />
+            <MyListItem onClick={() => changePage('faucet')} item="Faucet" icon={LiteIcon} cur={curpage} />
             <MyListItem onClick={() => changePage('home')} item="Home" icon={LiteIcon} cur={curpage} />
           </List>
         </Box>
@@ -125,6 +127,9 @@ export default function Navigator() {
           </Route>
           <Route path="/mypage">
             <MyPage />
+          </Route>
+          <Route path="/faucet">
+            <Faucet />
           </Route>
           <Route path="/">
             <Lite />

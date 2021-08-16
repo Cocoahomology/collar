@@ -96,8 +96,16 @@ export default function AmountInput({ state: { state, setState, lite }, title, c
   const inputRef = useRef()
   const changInput = useCallback(
     (event) => {
-      const e = event.target
-      setState({ I: { ...state.I, [title]: e.value, old: state.I[title] } })
+      const newV = event.target.value
+      const oldV = state.I[title]
+      const cur = event.nativeEvent.data
+      if (
+        ((newV.length === 1 || oldV.indexOf('.') !== -1) && cur === '.') ||
+        (oldV === '0' && ['.', null].indexOf(cur) === -1)
+      )
+        return
+      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', null].indexOf(cur) > -1)
+        setState({ I: { ...state.I, [title]: newV, old: oldV } })
     },
     [state.I],
   )
@@ -129,7 +137,6 @@ export default function AmountInput({ state: { state, setState, lite }, title, c
           <div className={classes.amount}>
             <TextField
               value={state.I[title]}
-              type="number"
               onChange={changInput}
               inputRef={inputRef}
               placeholder="0.00"
