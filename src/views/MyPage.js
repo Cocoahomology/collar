@@ -460,7 +460,7 @@ export default function MyPage() {
         <div>
           <div className={classes.globalValueInfo}>
             <div>
-              <DynamicFont content="Total Borrow" />
+              <DynamicFont content="Total Borrowed" />
             </div>
             <div>
               <DynamicFont
@@ -524,7 +524,7 @@ export default function MyPage() {
           </div>
           <div>
             <MyDivInfo
-              title="Receivbles"
+              title="Receivables"
               remarks="*Value of Lent Asset"
               amount={pools
                 .reduce((sum, cur) => {

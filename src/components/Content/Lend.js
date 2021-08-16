@@ -171,7 +171,7 @@ export default function Lend(props) {
           }
           info={[
             {
-              Slipage: lite.state.swap.sk.eq(0)
+              'Slippage tolerance': lite.state.swap.sk.eq(0)
                 ? 'NaN'
                 : `${(
                     (((parseFloat(
@@ -205,10 +205,10 @@ export default function Lend(props) {
                     100
                   ).toPrecision(3)} %`,
             },
-            { 'Minimal Recieve': `${(ethers.utils.formatEther(state.output.coll) * 0.995).toFixed(3)} COLL` },
-            { Rounte: `${registry.token[want].symbol} -> COLL` },
+            { 'Minimum recieved': `${(ethers.utils.formatEther(state.output.coll) * 0.995).toFixed(3)} COLL` },
+            { Route: `${registry.token[want].symbol} -> COLL` },
             {
-              Fee: `${
+              'Nominal swap fee': `${
                 lite.state.swap.sk.eq(0)
                   ? '0'
                   : (

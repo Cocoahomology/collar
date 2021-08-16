@@ -183,22 +183,22 @@ export default function Withdraw(props) {
           APY={`todo`}
           info={[
             {
-              'Exchange rate': `1CLPT = ${parseFloat(ethers.utils.formatEther(state.output.want)).toFixed(
+              'Exchange Rate': `1CLPT = ${parseFloat(ethers.utils.formatEther(state.output.want)).toFixed(
                 3,
               )} WANT + ${0} COLL`,
             },
             {
-              'Pool Shares': `${(
+              'Share of Pool': `${(
                 (ethers.utils.formatEther(lite.state.balance.clpt) / ethers.utils.formatEther(lite.state.swap.sk)) *
                 100
               ).toPrecision(3)} %`,
             },
             {
-              'Pool State': `1 WANT = ${(
+              'Pool Balance': `1 WANT = ${(
                 ethers.utils.formatEther(lite.state.swap.sx) / ethers.utils.formatEther(lite.state.swap.sy)
               ).toPrecision(3)} COLL`,
             },
-            { Fee: `${0} COLL` },
+            { 'Nominal swap fee': `${0} COLL` },
           ]}
         />
         <div className={classes.button}>

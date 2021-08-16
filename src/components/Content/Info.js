@@ -56,13 +56,13 @@ export default function Info() {
       <div>
         <InfoCard1
           token={lite.transform('token', '', 'call').symbol}
-          status="TOTAL BORROW"
+          status="TOTAL BORROWED"
           amount={lite.transform('str', 'balance', 'call')}
         />
 
         <InfoCard1
           token={lite.transform('token', '', 'coll').symbol}
-          status="TOTAL LEND"
+          status="TOTAL LENT"
           amount={lite.transform('str', 'balance', 'coll')}
         />
       </div>
@@ -115,7 +115,7 @@ export default function Info() {
           noHr={true}
         />
         <InfoCard3
-          title="Fee"
+          title="Nominal swap fee"
           data1="0.01% for BORROW, WITHDRAW, LEND and REDEEM"
           data2="0% for REPAY and DEPOSIT"
           noHr={true}

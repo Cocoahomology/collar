@@ -166,7 +166,7 @@ export default function Exit(props) {
           }
           info={[
             {
-              Slipage: lite.state.swap.sk.eq(0)
+              'Slippage tolerance': lite.state.swap.sk.eq(0)
                 ? 'NaN'
                 : `${(
                     (((parseFloat(
@@ -201,13 +201,13 @@ export default function Exit(props) {
                   ).toPrecision(3)} %`,
             },
             {
-              'Minimal Recieve': `${(ethers.utils.formatEther(state.output.want) * 0.995).toFixed(3)} ${
+              'Minimum recieved': `${(ethers.utils.formatEther(state.output.want) * 0.995).toFixed(3)} ${
                 registry.token[want].symbol
               }`,
             },
-            { Rounte: `COLL -> ${registry.token[want].symbol}` },
+            { Route: `COLL -> ${registry.token[want].symbol}` },
             {
-              Fee: `${(ethers.utils.formatEther(state.output.want) * 0.995).toFixed(3)} ${
+              'Nominal swap fee': `${(ethers.utils.formatEther(state.output.want) * 0.995).toFixed(3)} ${
                 registry.token[want].symbol
               } `,
             },

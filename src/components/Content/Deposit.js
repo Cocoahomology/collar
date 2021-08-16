@@ -197,18 +197,18 @@ export default function Repay(props) {
           APY={`todo`}
           info={[
             {
-              'Pool Shares': `${(
+              'Share of Pool': `${(
                 (ethers.utils.formatEther(lite.state.balance.clpt) / ethers.utils.formatEther(lite.state.swap.sk)) *
                 100
               ).toPrecision(3)} %`,
             },
             {
-              'Pool State': `1 WANT = ${(
+              'Pool Balance': `1 WANT = ${(
                 ethers.utils.formatEther(lite.state.swap.sx) / ethers.utils.formatEther(lite.state.swap.sy)
               ).toPrecision(3)} COLL`,
             },
             {
-              Slipage: lite.state.swap.sk.eq(0)
+              'Slippage tolerance': lite.state.swap.sk.eq(0)
                 ? 'NaN'
                 : `${(
                     (((parseFloat(

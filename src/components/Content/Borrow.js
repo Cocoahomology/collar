@@ -173,7 +173,7 @@ export default function Borrow() {
           }
           info={[
             {
-              Slippage: lite.state.swap.sk.eq(0)
+              'Slippage tolerance': lite.state.swap.sk.eq(0)
                 ? 'NaN'
                 : `${(
                     (((parseFloat(
@@ -208,10 +208,10 @@ export default function Borrow() {
                     100
                   ).toPrecision(3)} %`,
             },
-            { 'Minimal Recieve': `${(ethers.utils.formatEther(state.output.want) * 0.995).toFixed(3)} USDC` },
-            { Rounte: 'USDT -> COLL -> USDC' },
+            { 'Minimum recieved': `${(ethers.utils.formatEther(state.output.want) * 0.995).toFixed(3)} USDC` },
+            { Route: 'USDT -> COLL -> USDC' },
             {
-              Fee: `${
+              'Nominal swap fee': `${
                 lite.state.swap.sk.eq(0)
                   ? '0'
                   : (

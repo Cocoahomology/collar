@@ -198,7 +198,7 @@ export default function Repay(props) {
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ margin: '-8px 0 8px 0', fontFamily: 'Helvetica', fontSize: '0.8em' }}>
-            Maximal debt = {ethers.utils.formatEther(lite.state.balance.call)}
+            Maximum debt = {ethers.utils.formatEther(lite.state.balance.call)}
           </div>
           <ApyFloatMessage
             APY={
@@ -225,7 +225,7 @@ export default function Repay(props) {
             }
             info={[
               {
-                Slippage: lite.state.swap.sk.eq(0)
+                'Slippage tolerance': lite.state.swap.sk.eq(0)
                   ? 'NaN'
                   : `${(
                       (((parseFloat(
@@ -261,12 +261,12 @@ export default function Repay(props) {
                     ).toPrecision(3)} %`,
               },
               {
-                'Minimal Recieve': `${parseFloat(
+                'Minimum recieved': `${parseFloat(
                   ethers.utils.formatEther(state.input.want.add(state.input.coll)),
                 ).toFixed(3)} USDT`,
               },
-              { Rounte: 'COLL-> USDT / WANT->USDT' },
-              { Fee: `${0} WANT ` },
+              { Route: 'COLL-> USDT / WANT->USDT' },
+              { 'Nominal swap fee': `${0} WANT ` },
             ]}
           />
         </div>

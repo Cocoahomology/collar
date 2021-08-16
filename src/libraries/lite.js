@@ -483,36 +483,33 @@ export default class registry {
   info(type) {
     switch (type) {
       case 'bond':
-        return 'BOND token is collateral asset for borrow side to deposit.'
+        return 'BOND token is the collateral asset deposited by borrower.'
       case 'want':
-        return 'WANT token is debt asset for borrow side to require.'
+        return 'WANT token is the debt asset provided by lender.'
       case 'coll':
-        return 'COLL token is lending certificate.'
+        return 'COLL token is the lending certificate.'
       case 'clpt':
-        return 'CLPT is Collar LP Token and farming reward certificate.'
+        return 'CLPT is the Collar LP Token for the current pair.'
       case 'Borrow':
-        return `Get fixed rate debt with no collateral liquidation risk. 
-        Borrowers have obiligation repay their debt before the due date. 
-        During current round, your collateral is always safely.
-        A fixed 0.01% fee will be charged for each borrow order.`
+        return `Borrow for a fixed rate with no collateral liquidation risk. 
+		Collateral is safely stored and can be withdrawn at any time before the current round ends. 
+		A fixed 0.01% fee is charged for each borrow order.`
       case 'Repay':
-        return `Repay anytime before expiry to withdraw your collateral. 
-        WANT token and COLL token are all acceptible for repayment. 
-        Borrowers can choose which assets to repay according to fluctuations in prices. `
+        return `Repay your loan at any time before the current round ends to withdraw your collateral. 
+		WANT tokens and COLL tokens are both acceptable for repayment. 
+		Borrowers reduce the cost of their loan by using the lower priced token for repayment.`
       case 'Deposit':
-        return `There are three method to join Collar farming: 
-        providing WANT only, COLL only or WANT and COLL. 
-        Farming APY is fixed as long as users don't redeem CLPT before expiry.`
+        return `There are three ways to provide liquidity in Collar: provide only WANT, only COLL, or both WANT and COLL. 
+		The APY earned by a provider is fixed as long as they don't redeem their CLPT before the current round ends.`
       case 'Withdraw':
-        return `Farming users are allowed to withdraw their liquidity anytime before 
-        expiry during current round. Redeem CLPT to collect coresponding underlying assets, 
-        which are possibly not the same with original deposit in amount. `
+        return `Liquidity providers can withdraw their liquidity at any time before the current round ends. 
+		Redeem CLPT to collect the corresponding underlying assets, which are possibly not in the same proportion as the original deposit.`
       case 'Lend':
-        return `Get fixed interest rate with fixed term. 
-        A fixed 0.01% fee will be charged for each lending order.`
+        return `Earn a fixed interest rate over a fixed term. 
+		A nominal 0.01% fee is charged for each lending order.`
       case 'Exit':
-        return `Lenders is capable exit from current round anytime before expiry. 
-        The interest rate may different from their original  APY. `
+        return `Lenders can exit at any time before the current round ends. 
+		The interest earned may differ from the originally quoted APY.`
       default:
         return ''
     }
